@@ -1,1 +1,80 @@
+# Incident Report: [Tên sự cố, ví dụ SSH Brute Force]
 
+## 1. Thông tin chung
+
+| Mục | Nội dung |
+|---|---|
+| Mã sự cố | [INC-001] |
+| Thời điểm phát hiện | [YYYY-MM-DD HH:MM] |
+| Người xử lý | Hồ Sỹ Huân |
+| Mức độ (Severity) | [Low / Medium / High / Critical] |
+| Trạng thái | [Đã xử lý / Đang điều tra] |
+| Ticket TheHive | [Mã case] |
+
+## 2. Tóm tắt
+
+[2-3 câu: chuyện gì đã xảy ra, hệ thống nào bị ảnh hưởng, kết quả cuối cùng.]
+
+## 3. Timeline
+
+| Thời gian | Sự kiện |
+|---|---|
+| [HH:MM:SS] | Bắt đầu tấn công từ [IP nguồn] |
+| [HH:MM:SS] | Wazuh sinh cảnh báo |
+| [HH:MM:SS] | Shuffle tạo case trên TheHive, gửi Telegram |
+| [HH:MM:SS] | Bắt đầu điều tra |
+| [HH:MM:SS] | Hoàn tất xử lý |
+
+## 4. Chi tiết cảnh báo
+
+| Trường | Giá trị |
+|---|---|
+| Rule ID | [xxxxx] |
+| Mô tả rule | [mô tả] |
+| Rule level / severity | [x] |
+| Agent bị ảnh hưởng | [tên agent] |
+| Source IP | [IP] |
+| Timestamp | [thời gian] |
+
+![Cảnh báo trên Wazuh](../images/alert-ssh.png)
+
+## 5. Phân tích
+
+- **Log đã kiểm tra:** [nguồn log]
+- **Quan sát:** [ví dụ: nhiều lần đăng nhập thất bại từ cùng một IP trong thời gian ngắn]
+- **Kết luận:** [tấn công có thành công không, dựa vào bằng chứng nào]
+
+```
+[Trích 5-10 dòng log liên quan, highlight dòng quan trọng]
+```
+
+## 6. IOC (Indicators of Compromise)
+
+| Loại | Giá trị |
+|---|---|
+| IP nguồn | [IP] |
+| Tài khoản bị nhắm tới | [username] |
+| File / đường dẫn đáng ngờ | [nếu có] |
+| Hash | [nếu có] |
+
+## 7. Ánh xạ MITRE ATT&CK
+
+| Tactic | Technique | ID |
+|---|---|---|
+| [Credential Access] | [Brute Force] | [T1110] |
+
+## 8. Đánh giá tác động
+
+[Dữ liệu/tài khoản nào có thể bị ảnh hưởng. Tấn công thành công hay thất bại.]
+
+## 9. Biện pháp xử lý
+
+- **Ngăn chặn:** [chặn IP, khóa tài khoản]
+- **Loại bỏ:** [xóa file độc hại, đổi mật khẩu]
+- **Khôi phục:** [kiểm tra lại dịch vụ]
+
+## 10. Khuyến nghị
+
+- [Tắt đăng nhập bằng mật khẩu, dùng SSH key]
+- [Cài fail2ban hoặc giới hạn số lần đăng nhập]
+- [Khuyến nghị khác]
