@@ -5,11 +5,7 @@
 | | |
 |---|---|
 | **Công nghệ** | Wazuh · Shuffle SOAR · DFIR-IRIS · Telegram Bot · Ubuntu Server · Kali Linux · Hydra · auditd · iptables · VMware |
-| **Loại dự án** | Đồ án nhóm (Nhóm 7), Khoa An toàn thông tin, Học viện Kỹ thuật Mật mã |
-| **Thời gian** | [MM/YYYY – MM/YYYY] |
-| **Nhóm thực hiện** | Lê Văn Hùng · **Hồ Sỹ Huân** · Nguyễn Thành Luân |
-| **Giảng viên hướng dẫn** | Đỗ Cao Khánh |
-| **Đóng góp của mình** | [Điền: ví dụ "Thiết kế workflow Shuffle, viết rule Wazuh cho webshell, ..."] |
+
 
 ---
 
