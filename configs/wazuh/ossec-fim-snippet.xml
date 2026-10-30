@@ -1,0 +1,13 @@
+<!-- /var/ossec/etc/ossec.conf  (trích) -->
+<syscheck>
+  <!-- Theo dõi realtime thư mục web root -->
+  <directories realtime="yes" check_all="yes" report_changes="yes">/var/www/html</directories>
+</syscheck>
+
+<!-- Webhook sang Shuffle: dán URL/HOOK_ID thật vào máy của bạn, KHÔNG commit giá trị thật -->
+<integration>
+  <name>shuffle</name>
+  <hook_url>http://[SHUFFLE_IP]:[PORT]/api/v1/hooks/[HOOK_ID]</hook_url>
+  <rule_id>5763,100520</rule_id>
+  <alert_format>json</alert_format>
+</integration>

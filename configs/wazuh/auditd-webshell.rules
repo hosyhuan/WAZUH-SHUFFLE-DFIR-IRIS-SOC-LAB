@@ -1,0 +1,8 @@
+## /etc/audit/rules.d/audit.rules  (trích phần phục vụ phát hiện webshell)
+## Bắt mọi execve của www-data (uid 33): whoami, id, cat, python, perl, ...
+-a always,exit -F arch=b64 -S execve -F uid=33 -F key=webshell_command_exec
+-a always,exit -F arch=b32 -S execve -F uid=33 -F key=webshell_command_exec
+
+## Bắt kết nối socket (TCP IPv4 + IPv6) của www-data
+-a always,exit -F arch=b64 -S connect -F euid=33 -k webshell_net_connect
+-a always,exit -F arch=b32 -S connect -F euid=33 -k webshell_net_connect

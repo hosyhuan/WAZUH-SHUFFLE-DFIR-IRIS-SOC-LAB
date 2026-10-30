@@ -1,0 +1,52 @@
+<!-- /var/ossec/etc/rules/local_rules.xml  (rule phát hiện webshell) -->
+<group name="webshell,">
+
+  <!-- Lớp 1: FIM - file PHP mới trong web root -->
+  <rule id="100500" level="8">
+    <if_sid>554</if_sid>
+    <field name="file" type="pcre2">(?i)\.(php|phtml|php3|php5|phar)$</field>
+    <description>[ALERT-FIM] File PHP moi xuat hien trong web root: $(file) - Can xac nhan lai voi developer</description>
+    <mitre><id>T1505.003</id></mitre>
+    <group>webshell,fim,low</group>
+  </rule>
+
+  <!-- Lớp 1b: FIM - file PHP bị chỉnh sửa -->
+  <rule id="100501" level="10">
+    <if_sid>550</if_sid>
+    <field name="file" type="pcre2">(?i)\.(php|phtml|php3|php5|phar)$</field>
+    <description>[ALERT-FIM] File PHP trong web root bi chinh sua: $(file)</description>
+    <mitre><id>T1505.003</id></mitre>
+    <group>webshell,fim,medium</group>
+  </rule>
+
+  <!-- Lớp 1c: nội dung chứa pattern webshell (eval, assert, base64...) -->
+  <!-- TODO: dán lại nguyên văn rule 100502 từ máy Wazuh của bạn (regex đầy đủ) -->
+  <!--
+  <rule id="100502" level="12">
+    <if_sid>100501</if_sid>
+    <field name="changed_content" type="pcre2">(?i)(eval\s*\(|assert\s*\(|base64_decode ...)</field>
+    <description>[ALERT-SIGNATURE] Noi dung file $(file) chua webshell pattern</description>
+    <mitre><id>T1505.003</id></mitre>
+    <group>webshell,fim,signature,high</group>
+  </rule>
+  -->
+
+  <!-- Lớp 2: hành vi - www-data thực thi lệnh hệ thống -->
+  <rule id="100510" level="12">
+    <if_sid>80700</if_sid>
+    <field name="audit.key">webshell_command_exec</field>
+    <description>[ALERT-BEHAVIOR] www-data thuc thi lenh he thong qua execve. Webshell hoac RCE dang hoat dong</description>
+    <mitre><id>T1505.003</id></mitre>
+    <group>webshell,behavior,execve,high</group>
+  </rule>
+
+  <!-- Lớp 3: tương quan - file PHP mới + www-data exec trong 300s -->
+  <rule id="100520" level="15" timeframe="300">
+    <if_matched_sid>100500</if_matched_sid>
+    <if_sid>100510</if_sid>
+    <description>CRITICAL-A: File PHP moi + www-data exec 300s — HIGH CONFIDENCE WEBSHELL</description>
+    <mitre><id>T1505.003</id></mitre>
+    <group>webshell,correlation,critical</group>
+  </rule>
+
+</group>
