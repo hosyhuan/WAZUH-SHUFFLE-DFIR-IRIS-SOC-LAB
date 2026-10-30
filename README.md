@@ -110,6 +110,9 @@ Chi tiết điều tra: [incident-reports/ssh-brute-force.md](incident-reports/s
 ```bash
 echo '<?php system($_GET["cmd"]); ?>' > /var/www/html/t_corr.php   # tạo webshell
 curl "http://localhost/t_corr.php?cmd=whoami"                          # thực thi trong 300s
+sudo tail -f /var/ossec/logs/alerts/alerts.json \
+  | jq 'select(.rule.id == "100520")'                                  # theo dõi cảnh báo Wazuh
+rm -f /var/www/html/t_corr.php                                         # xóa file Web Shell thử nghiệm, mục đích là dọn dẹp môi trường sau khi kiểm tra.
 ```
 
 **Phát hiện: 3 lớp.**
